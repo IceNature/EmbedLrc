@@ -31,6 +31,12 @@ def GetMatchFiles(filelist, regexs):
         matchedFiles.extend(m for m in filelist if pattern.match(m))
     return matchedFiles
 
+def CreateMap(filelist):
+    tempMap={}
+    for file in filelist:
+        tempMap[os.path.basename(file)]=file
+    return tempMap
+
 supportAudioTypes = ['.+\\' + m for m in supportAudioTypes]
 supportLrcTypes = ['.+\\' + m for m in supportLrcTypes]
 
@@ -41,5 +47,12 @@ for arg in sys.argv:
     else:
         print('Error:{0} is not a directory!'.format(arg))
 
-audioList = []
+if not fileList:
+    print('Cant\'t find file!')
+    sys.exit(1)
+
+
+audioList = CreateMap(GetMatchFiles(fileList, supportAudioTypes))
+lrcList = CreateMap(GetMatchFiles(fileList, supportLrcTypes))
+
 
