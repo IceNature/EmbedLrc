@@ -31,10 +31,11 @@ def GetMatchFiles(filelist, regexs):
         matchedFiles.extend(m for m in filelist if pattern.match(m))
     return matchedFiles
 
+
 def CreateMap(filelist):
-    tempMap={}
+    tempMap = {}
     for file in filelist:
-        tempMap[os.path.basename(file)]=file
+        tempMap[os.path.basename(file)] = file
     return tempMap
 
 supportAudioTypes = ['.+\\' + m for m in supportAudioTypes]
@@ -55,4 +56,9 @@ if not fileList:
 audioList = CreateMap(GetMatchFiles(fileList, supportAudioTypes))
 lrcList = CreateMap(GetMatchFiles(fileList, supportLrcTypes))
 
-
+for audio in audioList.keys:
+    if audio in lrcList.keys:
+        #TODO:write lrc into tag.
+        pass
+    else:
+        print('Can\'t find lrc file for {0}'.format(audio))
