@@ -13,6 +13,7 @@ mutagen，chardet
 mutagen （GPL v2）  
 chardet （LGPL v2.1）  
 可以使用 Pip 快速的安装：  
+
     pip install mutagen chardet
 
 ## 协议
