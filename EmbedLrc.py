@@ -54,7 +54,7 @@ for arg in sys.argv:
         print('Error:{0} is not a directory!'.format(arg))
 
 if not fileList:
-    print('Cant\'t find file!')
+    print('No file input!')
     sys.exit(1)
 
 
@@ -63,6 +63,7 @@ lrcList = CreateMap(GetMatchFiles(fileList, supportLrcTypes))
 
 for audioName in audioList.keys():
     if audioName in lrcList.keys():
+        print('Writting into {0} ...'.format(audioList[audioName]), end='')
         lrctext = ''
         with open(lrcList[audioName], 'rb') as lrc:
             lrcRawText = lrc.read()
@@ -73,7 +74,7 @@ for audioName in audioList.keys():
         audio.delall('USLT')
         audio.add(USLT(text=lrctext, encoding=3))
         audio.save()
-        print('Wirtten lrc into {0}'.format(audioList[audioName]))
+        print('done!')
     else:
         print('Can\'t find lrc file for {0}'.format(audioName))
 
