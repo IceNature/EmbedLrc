@@ -45,7 +45,8 @@ supportAudioTypes = ['.+\\' + m for m in supportAudioTypes]
 supportLrcTypes = ['.+\\' + m for m in supportLrcTypes]
 
 fileList = []
-for arg in sys.argv:
+args= sys.argv[1:]
+for arg in args:
     if os.path.isdir(arg):
         fileList.extend(ScanFiles(arg))
     elif arg == 'EmbedLrc.py':
