@@ -15,7 +15,7 @@ supportLrcTypes = ['.lrc']
 def ScanFiles(directory):
     filelist = []
     allObjects = [
-        directory + os.sep + filename for filename in os.listdir(directory)]
+        os.path.join(directory.strip(), filename) for filename in os.listdir(directory)]
     for m in allObjects:
         if os.path.isfile(m):
             filelist.append(m)
